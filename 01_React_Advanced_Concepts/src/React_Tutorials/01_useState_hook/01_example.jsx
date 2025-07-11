@@ -1,18 +1,36 @@
 import React, { useState } from "react";
 
-const ErrorExample = () => {
-  const [count, setCount] = useState(0);
+import { data } from "../../data";
 
-  const handleClick = () => {
-    setCount(count + 1);
+const ErrorExample = () => {
+  const [people, setPeople] = useState(data);
+  console.log(people);
+
+  const handleClick = (id) => {
+    const updatedArray = people.filter((person) => person.id != id);
+    setPeople(updatedArray);
+  };
+
+  const deleteAll = () => {
+    setPeople([]);
   };
 
   return (
     <>
-      <div>ErrorExample</div>
-      <h1>{count}</h1>
-      <button onClick={handleClick} className="btn">
-        Increment
+      {people.map((person) => {
+        return (
+          <>
+            <div>
+              <h2>{person.name}</h2>
+              <button onClick={() => handleClick(person.id)} className="btn">
+                Delete
+              </button>
+            </div>
+          </>
+        );
+      })}
+      <button style={{ marginTop: "20px" }} onClick={deleteAll} className="btn">
+        Delete All
       </button>
     </>
   );
