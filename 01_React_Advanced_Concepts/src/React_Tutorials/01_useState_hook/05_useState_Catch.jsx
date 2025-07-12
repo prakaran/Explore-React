@@ -1,20 +1,25 @@
 import React, { useState } from "react";
 
+let x = 1;
 const UseStateCatch = () => {
   const [value, setValue] = useState(0);
 
   const handleClick = () => {
-    // setTimeout((currentState) => {
-    //   console.log("clicked");
-    //   setValue(value + 1);
-    // }, 3000);
+    // setValue(value + 1);
+    // console.log(value);
+
+    // setValue((currentState) => {
+    //   const newState = currentState + 1;
+    //   console.log(newState);
+    //   return newState;
+    // });
 
     setTimeout(() => {
-      setValue((currentState) => {
-        const updatedState = currentState + 1;
-        return updatedState;
-      }, 3000);
       console.log("clicked");
+      setValue((currentState) => {
+        const newState = currentState + 1;
+        return newState;
+      });
     }, 3000);
   };
 
